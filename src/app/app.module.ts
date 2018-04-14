@@ -45,6 +45,7 @@ import {
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -95,6 +96,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     FlexLayoutModule,
 
+    AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
 

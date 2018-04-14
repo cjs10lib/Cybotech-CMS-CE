@@ -1,4 +1,9 @@
+import { Observable } from 'rxjs/Observable';
+
+import { PeopleService } from './../../services/people.service';
+import { Person } from './../../models/person.model';
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 
 @Component({
   selector: 'app-people-form',
@@ -8,22 +13,31 @@ import { Component, OnInit } from '@angular/core';
 export class PeopleFormComponent implements OnInit {
   step = 0;
 
-  person = {};
+  person: Person = {
+    education: {},
+    occupation: {},
+    contact: {}
+  };
 
+  // Breadcrum
   title = 'New Registration';
   icon = 'person_add';
   pageBanner = 'url(\'../../assets/banner/banner 1.jpg\')';
 
+  // image preview
   imageUrl = '../../assets/avatar/avatar3.png';
   fileToUpload: File = null;
   // tslint:disable-next-line:no-inferrable-types
   isHovering: boolean;
 
-  constructor() { }
+  constructor(public peopleService: PeopleService) { }
 
   ngOnInit() {
   }
 
+  toggleHover($event: boolean) {
+    this.isHovering = $event;
+  }
 
   handleFileInput(file: FileList) {
     this.fileToUpload = file.item(0);
@@ -40,8 +54,10 @@ export class PeopleFormComponent implements OnInit {
     reader.readAsDataURL(this.fileToUpload);
   }
 
-  onSubmit() {
-    console.log(this.person);
+  onSubmit(person: Person) {
+    if (confirm('Are you sure of this record?')) {
+      this.peopleService.createPerson(this.person, this.fileToUpload);
+    }
   }
 
   setStep(index: number) {
@@ -55,9 +71,6 @@ export class PeopleFormComponent implements OnInit {
   prevStep() {
     this.step--;
   }
-
-  toggleHover($event: boolean) {
-    this.isHovering = $event;
-  }
-
 }
+
+

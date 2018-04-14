@@ -12,9 +12,13 @@
 
         <br>
 
-        {{ f.value | json }}
+        <div *ngIf="peopleService.percentage | async as pct">
+          <mat-progress-bar mode="determinate" [value]="pct"></mat-progress-bar>
+        </div>
 
-        <form #f="ngForm" (ngSubmit)="onSubmit()"> 
+        <!-- {{ f.value | json }} -->
+
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)"> 
 
           <mat-accordion class="example-headers-align">
 
@@ -74,7 +78,7 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                  <input matInput [(ngModel)]="person.firstName" name="firstName" #firstName placeholder="First name" required>
+                  <input matInput [(ngModel)]="person.firstname" name="firstname" #firstname placeholder="First name" required>
                   <mat-error>
                       Firstname is <strong>required</strong>
                   </mat-error>
@@ -142,7 +146,7 @@
                 
                 <mat-form-field>
                   <span matPrefix> <mat-icon>school</mat-icon> &nbsp; </span>
-                  <mat-select [(ngModel)]="person.highestEducationLevel" name="highestEducationLevel" #highestEducationLevel placeholder="Highest level of education">
+                  <mat-select [(ngModel)]="person.education.highestEducationLevel" name="highestEducationLevel" #highestEducationLevel placeholder="Highest level of education">
                     <mat-option value=""></mat-option>
                     <mat-option value="TY">Tetiarry</mat-option>
                     <mat-option value="HS">High School</mat-option>
@@ -150,22 +154,22 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                  <input matInput [(ngModel)]="person.certification" name="certification" #certification placeholder="Certification">
+                  <input matInput [(ngModel)]="person.education.certification" name="certification" #certification placeholder="Certification">
                 </mat-form-field>
 
                 <mat-form-field>
-                  <input matInput [(ngModel)]="person.occupation" name="occupation" #occupation placeholder="Occupation" required>
+                  <input matInput [(ngModel)]="person.occupation.occupation" name="occupation" #occupation placeholder="Occupation" required>
                   <mat-error>
                     Occupation status is <strong>required</strong>
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
-                  <input matInput [(ngModel)]="person.officeDept" name="officeDept" #officeDept placeholder="Office Department">
+                  <input matInput [(ngModel)]="person.occupation.officeDepartment" name="officeDepartment" #officeDepartment placeholder="Office Department">
                 </mat-form-field>
 
                 <mat-form-field>
-                  <mat-select [(ngModel)]="person.officePost" name="officePost" #officePost placeholder="Official Position">
+                  <mat-select [(ngModel)]="person.occupation.officePost" name="officePost" #officePost placeholder="Official Position">
                     <mat-option value=""></mat-option>
                     <mat-option value="ceo">CEO</mat-option>
                     <mat-option value="manager">Manager</mat-option>
@@ -174,17 +178,17 @@
 
                 <mat-form-field>
                   <span matPrefix> <mat-icon>phone_iphone</mat-icon> &nbsp; </span>
-                  <input matInput type="tel" [(ngModel)]="person.officePhone" name="officePhone" #officePhone placeholder="Office Phone">
+                  <input matInput type="tel" [(ngModel)]="person.occupation.officePhone" name="officePhone" #officePhone placeholder="Office Phone">
                 </mat-form-field>
     
                 <mat-form-field>
                   <span matPrefix> <mat-icon>phone</mat-icon> &nbsp; </span>
-                  <input matInput type="tel" [(ngModel)]="person.officeTelephone" name="officeTelephone" #officeTelephone placeholder="Office Telephone">
+                  <input matInput type="tel" [(ngModel)]="person.occupation.officeTelephone" name="officeTelephone" #officeTelephone placeholder="Office Telephone">
                 </mat-form-field>
 
                 <mat-form-field>
                   <span matPrefix> <mat-icon>location_on</mat-icon> &nbsp; </span>
-                  <textarea matInput [(ngModel)]="person.officeAddress" name="officeAddress" #officeAdress placeholder="Office Address"></textarea>
+                  <textarea matInput [(ngModel)]="person.occupation.officeAddress" name="officeAddress" #officeAdress placeholder="Office Address"></textarea>
                 </mat-form-field>
 
               </div> 
@@ -210,7 +214,7 @@
 
                 <mat-form-field>
                   <span matPrefix> <mat-icon>phone</mat-icon> &nbsp; </span>
-                  <input matInput type="tel" [(ngModel)]="person.mobilePhone1" name="mobilePhone1" #mobilePhone1 placeholder="Mobile Phone" required>
+                  <input matInput type="tel" [(ngModel)]="person.contact.mobilePhone1" name="mobilePhone1" #mobilePhone1 placeholder="Mobile Phone" required>
                   
                   <mat-error>
                     Mobile phone number is <strong>required</strong>
@@ -219,17 +223,17 @@
 
                 <mat-form-field>
                   <span matPrefix> <mat-icon>phone_iphone</mat-icon> &nbsp; </span>
-                  <input matInput type="tel" [(ngModel)]="person.mobilePhone2" name="mobilePhone2" #mobilePhone2 placeholder="Mobile Phone">
+                  <input matInput type="tel" [(ngModel)]="person.contact.mobilePhone2" name="mobilePhone2" #mobilePhone2 placeholder="Mobile Phone">
                 </mat-form-field>
     
                 <mat-form-field>
                   <span matPrefix> <mat-icon>contact_phone</mat-icon> &nbsp; </span>
-                  <input matInput type="tel" [(ngModel)]="person.homePhone" name="homePhone" #homePhone placeholder="Home Phone">
+                  <input matInput type="tel" [(ngModel)]="person.contact.homePhone" name="homePhone" #homePhone placeholder="Home Phone">
                 </mat-form-field>              
                 
                 <mat-form-field>
                   <span matPrefix> <mat-icon>location_city</mat-icon> &nbsp; </span>
-                  <input matInput [(ngModel)]="person.city" name="city" #city placeholder="City" required> 
+                  <input matInput [(ngModel)]="person.contact.city" name="city" #city placeholder="City" required> 
                   
                   <mat-error>
                     Address city is <strong>required</strong>
@@ -238,7 +242,7 @@
     
                 <mat-form-field>
                   <span matPrefix> <mat-icon>my_location</mat-icon> &nbsp; </span>
-                  <input matInput type="number" maxlength="3" [(ngModel)]="person.zip" name="zip" #zip placeholder="Zip" required>
+                  <input matInput maxlength="3" [(ngModel)]="person.contact.zip" name="zip" #zip placeholder="Zip" required>
                   <mat-hint>Enter area code</mat-hint>
                   <mat-hint align="end">{{zip.value?.length || 0}}/3</mat-hint>
                   
@@ -249,7 +253,7 @@
 
                 <mat-form-field>
                   <span matPrefix> <mat-icon>location_on</mat-icon> &nbsp; </span>
-                  <textarea matInput [(ngModel)]="person.residentialAddress" name="residentialAddress" #residentialAddress placeholder="Residential Address" required></textarea>
+                  <textarea matInput [(ngModel)]="person.contact.residentialAddress" name="residentialAddress" #residentialAddress placeholder="Residential Address" required></textarea>
                   
                   <mat-error>
                     Residential address is <strong>required</strong>
