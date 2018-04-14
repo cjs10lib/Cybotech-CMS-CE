@@ -1,0 +1,25 @@
+@import '../../../theme/custom-theme.scss';
+
+.card-wrapper {
+    display: 100%;
+    margin: -75px 20px 20px 20px;
+}
+
+.flex-details { 
+    display: flex;
+    flex-direction: column;
+}
+
+.fill-space {
+    flex: 1 1 auto;
+}
+
+mat-card-header {
+    background-color: rgb(192, 189, 189);
+    color: rgb(150, 148, 148);
+    line-height: 0.3;
+    width: 100%;
+}
+
+
+

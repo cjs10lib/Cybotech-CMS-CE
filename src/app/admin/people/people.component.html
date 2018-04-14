@@ -1,0 +1,117 @@
+<div class="bread-crum">
+  <app-breadcrum [page-title]="title"></app-breadcrum>
+</div>
+
+<mat-card>
+  <div fxLayout="row" fxLayout.lt-sm="column" fxFlexAlign.lt-sm="center center">
+
+    <div class="person-search" fxFlex="20" fxFlex.gt-xs="style='border-right: 2px solid  #e6e6e6e6;'">
+      <h3>Filter by Name</h3>
+      <mat-form-field fxFlex.sm="style='font-size:10px;'">
+        <input matInput type="text" placeholder="Person's name">
+      </mat-form-field>
+    </div>
+    
+    <div class="people-div" fxFlex>
+
+      <section>
+        <div class="add-new">
+          <a mat-raised-button color="primary" routerLink="/new-registration">Add New Record</a>
+        </div>
+      </section>
+
+        <mat-nav-list dense>
+          <mat-list-item>
+              <mat-divider></mat-divider>
+              <img matListAvatar src="../../../assets/avatar/avatar1.png" alt="...">
+              <h3 matLine> Message From </h3>
+              <p matLine>
+                <span> Message subject</span>
+                <span class="demo-2"> message content </span>
+              </p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          <mat-list-item>
+              <mat-divider></mat-divider>
+              <img matListAvatar src="../../../assets/avatar/avatar1.png" alt="...">
+              <h3 matLine> Message From </h3>
+              <p matLine>
+                <span> Message subject</span>
+                <span class="demo-2"> message content </span>
+              </p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          <mat-list-item>
+              <mat-divider></mat-divider>
+              <img matListAvatar src="../../../assets/avatar/avatar1.png" alt="...">
+              <h3 matLine> Message From </h3>
+              <p matLine>
+                <span> Message subject</span>
+                <span class="demo-2"> message content </span>
+              </p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          <mat-list-item>
+              <mat-divider></mat-divider>
+              <img matListAvatar src="../../../assets/avatar/avatar1.png" alt="...">
+              <h3 matLine> Message From </h3>
+              <p matLine>
+                <span> Message subject</span>
+                <span class="demo-2"> message content </span>
+              </p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          <mat-list-item>
+              <mat-divider></mat-divider>
+              <img matListAvatar src="../../../assets/avatar/avatar1.png" alt="...">
+              <h3 matLine> Message From </h3>
+              <p matLine>
+                <span> Message subject</span>
+                <span class="demo-2"> message content </span>
+              </p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          <mat-list-item>
+              <mat-divider></mat-divider>
+              <img matListAvatar src="../../../assets/avatar/avatar1.png" alt="...">
+              <h3 matLine> Message From </h3>
+              <p matLine>
+                <span> Message subject</span>
+                <span class="demo-2"> message content </span>
+              </p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          <mat-list-item>
+              <mat-divider></mat-divider>
+              <img matListAvatar src="../../../assets/avatar/avatar1.png" alt="...">
+              <h3 matLine> Message From </h3>
+              <p matLine>
+                <span> Message subject</span>
+                <span class="demo-2"> message content </span>
+              </p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-nav-list>
+
+    </div>
+    
+    <div fxShow.lt-sm="false" fxShow="true" fxFlex="25">
+
+      <div style="background-color: #e6e6e6e6">
+        <mat-list dense>
+          <mat-list-item>
+            <mat-icon matListIcon>mail_outline</mat-icon>
+            <h3 matLine> Email People </h3>
+          </mat-list-item>         
+          <mat-list-item>
+            <mat-icon matListIcon>import_export</mat-icon>
+            <h3 matLine> Export </h3>
+          </mat-list-item>         
+        </mat-list>
+      </div>
+  
+    </div>
+
+  </div> 
+  
+</mat-card>

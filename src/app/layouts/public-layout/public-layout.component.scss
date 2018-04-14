@@ -1,0 +1,21 @@
+.main-nav {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 100%  !important;
+    z-index: 5;
+}
+
+.icon-padding {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+mat-toolbar {
+    height:  64px !important;
+    min-height: 64px !important;
+
+mat-toolbar-row {
+    height: 64px !important;
+}
+}

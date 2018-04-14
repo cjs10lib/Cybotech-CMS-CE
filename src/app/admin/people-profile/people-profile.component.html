@@ -1,0 +1,194 @@
+<app-breadcrum [page-title]="title" [page-icon]="icon" [page-banner]="pageBanner"></app-breadcrum>
+
+<mat-card class="card-wrapper">
+  
+  <div class="profile-intro">
+    <div fxLayout="row" fxLayout.xs="column" fxFlexAlign="center center">
+     
+        <!-- <div class="intro-img" > -->
+        <div fxFlex="28" fxFlexOrder.xs="1">
+          <div class="flex-details" style="margin-bottom: 20px;">
+            <img src="../../../assets/avatar/avatar2.png" alt="" style="max-width: 100%;">
+          </div>
+        </div>
+
+
+        <!-- <div class="flex-details"> -->
+        <div fxFlex="50" fxFlexOrder.xs="2">
+          <div class="flex-details">
+
+            <mat-list>
+
+              <mat-list-item>
+                <h2>Name</h2>
+              </mat-list-item>
+    
+              <mat-list-item>
+                <mat-icon>phone_iphone</mat-icon> &nbsp;
+                <span>Phone</span>
+              </mat-list-item>
+    
+              <mat-list-item>
+                <mat-icon>email</mat-icon> &nbsp;
+                <span>Email</span>  
+              </mat-list-item>
+    
+              <mat-list-item>
+                <mat-icon>location_on</mat-icon> &nbsp;          
+                <span>Address</span>
+              </mat-list-item>
+    
+            </mat-list> 
+          
+          </div>
+
+        </div>
+    </div>
+
+  </div>
+
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        About
+      </ng-template>
+
+      <div fxLayout="row" fxLayout.xs="column" fxFlexAlign="center center">
+     
+        <div fxFlex="50" fxFlexOrder.xs="1">
+
+          <mat-card class="flex-details" style="margin: 10px;">
+            <mat-card-header>
+              <h3>Main</h3>
+              <span class="fill-space"></span>
+              <button mat-button color="primary">Edit</button>              
+            </mat-card-header>
+            <mat-card-content>
+              <mat-divider></mat-divider>
+              <mat-list dense>
+                <mat-list-item>
+                  <span>Name</span>
+                  <div class="fill-space"></div>
+                  <span>Onwe Christian</span>
+                </mat-list-item>
+              </mat-list>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="flex-details" style="margin: 10px;">
+            <mat-card-header>
+              <h3>Family</h3>
+              <span class="fill-space"></span>
+              <button mat-button color="primary">Edit</button>  
+            </mat-card-header>
+            <mat-card-content>
+              <mat-divider></mat-divider>
+              <mat-list dense>
+                <mat-list-item>
+                  <span>Name</span>
+                  <div class="fill-space"></div>
+                  <span>Onwe Christian</span>
+                </mat-list-item>
+              </mat-list>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="flex-details" style="margin: 10px;">
+            <mat-card-header>
+              <h3>Contact</h3>
+              <span class="fill-space"></span>
+              <button mat-button color="primary">Edit</button>  
+            </mat-card-header>
+            <mat-card-content>
+              <mat-divider></mat-divider>
+              <mat-list dense>
+                <mat-list-item>
+                  <span>Address</span>
+                  <div class="fill-space"></div>
+                  <span>Asokoro Abuja</span>
+                </mat-list-item>
+              </mat-list>
+            </mat-card-content>
+          </mat-card>
+
+        </div>
+
+        <div fxFlex="50" fxFlexOrder.xs="2">
+
+          <mat-card class="flex-details" style="margin: 10px;">
+            <mat-card-header>
+              <h3>Demographics</h3>
+              <span class="fill-space"></span>
+              <button mat-button color="primary">Edit</button>  
+            </mat-card-header>
+            <mat-card-content>
+              <mat-divider></mat-divider>
+              <mat-list dense>
+                <mat-list-item>
+                  <span>Gender</span>
+                  <div class="fill-space"></div>
+                  <span>Male</span>
+                </mat-list-item>
+              </mat-list>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="flex-details" style="margin: 10px;">
+            <mat-card-header>
+              <h3>Education & Work</h3>
+              <span class="fill-space"></span>
+              <button mat-button color="primary">Edit</button>  
+            </mat-card-header>
+            <mat-card-content>
+              <mat-divider></mat-divider>
+              <mat-list dense>
+                <mat-list-item>
+                  <span>School</span>
+                  <div class="fill-space"></div>
+                  <span>SIMTECH</span>
+                </mat-list-item>
+              </mat-list>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="flex-details" style="margin: 10px;">
+            <mat-card-header>
+              <h3>Other</h3>
+              <span class="fill-space"></span>
+              <button mat-button color="primary">Edit</button>  
+            </mat-card-header>
+            <mat-card-content>
+              <mat-divider></mat-divider>
+              <mat-list dense>
+                <mat-list-item>
+                  <span>Allergies</span>
+                  <div class="fill-space"></div>
+                  <span>None</span>
+                </mat-list-item>
+                <mat-list-item>
+                  <span>Dietary Needs</span>
+                  <div class="fill-space"></div>
+                  <span>None</span>
+                </mat-list-item>
+              </mat-list>
+            </mat-card-content>
+          </mat-card>
+
+        </div>
+  
+      </div>
+
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Gallery
+      </ng-template>
+
+      <p>The wizard will guide you through the basic form information requirements.</p>
+
+
+    </mat-tab>
+  </mat-tab-group>
+
+</mat-card>

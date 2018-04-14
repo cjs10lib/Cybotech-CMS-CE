@@ -1,0 +1,31 @@
+@import '../../theme/custom-theme.scss';
+
+.bread-crum {
+    width: 100% !important;
+    height: 230px !important;
+    display: block !important;
+    //background-color: mat-color($accent) !important;
+    // background-image: url('../../assets/banner/dark-material-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover
+}
+
+.bread-crum mat-list-item {
+    text-indent: 10px;
+    padding-top: 60px;
+    width: 100%;
+}
+
+.bread-crum h3 {
+    display: inline-block;
+    padding: 48px 0 0 30px;    
+    color: #fff;    
+    letter-spacing: 1px;
+}
+
+mat-icon {
+    margin-right: 10px;
+    font-size: 50px;
+    color: #fff;
+}

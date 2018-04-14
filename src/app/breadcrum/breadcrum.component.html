@@ -1,0 +1,9 @@
+<!-- <div class="bread-crum" style="background-image: url('{{ pageBanner }}');"> -->
+<div class="bread-crum" [style.background-image]="pageBanner">
+    <mat-list>
+        <mat-list-item>
+            <mat-icon>{{ pageIcon }}</mat-icon>
+            <h3> {{ pageTitle }} </h3>
+        </mat-list-item>  
+    </mat-list>
+</div>

@@ -1,0 +1,20 @@
+<div class="signin-content">
+  <mat-card>
+    <mat-card-content>
+      <form #f="ngForm" (ngSubmit)="onSubmit()">
+        <p>Please login to continue</p>
+        <mat-form-field class="full-width-input">
+          <input matInput placeholder="User" required>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input matInput type="password" placeholder="Password" required>
+        </mat-form-field>
+        <button 
+          mat-raised-button 
+          color="primary" 
+          type="submit" 
+          (click)="login()">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
