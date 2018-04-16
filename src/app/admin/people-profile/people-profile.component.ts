@@ -48,12 +48,4 @@ export class PeopleProfileComponent implements OnInit {
           this.personImage = resp;
         });
   }
-
-  getAge() {
-    // tslint:disable-next-line:curly
-    if (!this.details.person['dob'])
-      return;
-
-    return new Date().getFullYear() - this.details.person['dob'].getFullYear();
-  }
 }

@@ -135,20 +135,20 @@
         <button mat-raised-button type="button" color="primary" (click)="nextStep()">Next</button>
       </mat-action-row>
     </mat-expansion-panel>
-  
+
     <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Education & Work
+          Education
         </mat-panel-title>
         <mat-panel-description>
-          Enter profession and qualification
+          Enter qualifications
           <mat-icon>school</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
 
       <div class="form-field-container">
-        
+
         <mat-form-field>
           <span matPrefix> <mat-icon>school</mat-icon> &nbsp; </span>
           <mat-select [(ngModel)]="person.education.highestEducationLevel" name="highestEducationLevel" #highestEducationLevel placeholder="Highest level of education">
@@ -173,6 +173,28 @@
             <mat-option value="Undergraduate">Undergraduate</mat-option>
           </mat-select>
         </mat-form-field>
+       
+      </div>
+
+      <mat-action-row>
+        <button mat-raised-button type="button" (click)="prevStep()">Previous</button>
+        <button mat-raised-button type="button" color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Profession/Work
+        </mat-panel-title>
+        <mat-panel-description>
+          Enter profession and qualification
+          <mat-icon>school</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="form-field-container">               
 
         <mat-form-field>
           <input matInput [(ngModel)]="person.occupation.occupation" name="occupation" #occupation placeholder="Occupation" required>
@@ -223,7 +245,7 @@
       </mat-action-row>
     </mat-expansion-panel>
   
-    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle="true">
+    <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Contact

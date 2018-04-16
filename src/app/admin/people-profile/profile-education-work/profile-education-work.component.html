@@ -1,0 +1,79 @@
+
+
+<mat-card class="flex-details" style="margin: 10px;">
+  <mat-card-header>
+    <h3>Education & Work</h3>
+    <span class="fill-space"></span>
+    <button mat-button color="primary">Edit</button>  
+  </mat-card-header>
+  <mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-list dense>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Highest Education</span>
+        <div class="fill-space"></div>
+        <span>{{ person.education.highestEducationLevel }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Certificate</span>
+        <div class="fill-space"></div>
+        <span>{{ person.education.certification }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>School</span>
+        <div class="fill-space"></div>
+        <span>{{ person.education.school }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Grade</span>
+        <div class="fill-space"></div>
+        <span>{{ person.education.grade }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Occupation</span>
+        <div class="fill-space"></div>
+        <span>{{ person.occupation.occupation }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Employer</span>
+        <div class="fill-space"></div>
+        <span>{{ person.occupation.employer }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>DepartMent</span>
+        <div class="fill-space"></div>
+        <span>{{ person.occupation.department }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Post</span>
+        <div class="fill-space"></div>
+        <span>{{ person.occupation.post }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Office Phone(s)</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.occupation.phone }}, <br>
+          {{ person.occupation.telephone }}
+        </span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Office Address</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.occupation.address }}
+        </span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

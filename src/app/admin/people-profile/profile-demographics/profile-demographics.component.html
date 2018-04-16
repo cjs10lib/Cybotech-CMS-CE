@@ -1,0 +1,63 @@
+
+<mat-card class="flex-details" style="margin: 10px;">
+  <mat-card-header>
+    <h3>Demographics</h3>
+    <span class="fill-space"></span>
+    <button mat-button color="primary">Edit</button>  
+  </mat-card-header>
+  <mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-list dense>               
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Gender</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.gender }} 
+        </span>
+      </mat-list-item>                
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Age</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ getAge() }} Years Old <br>
+          {{ person.dob | date }} 
+        </span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Ethnicity/Race</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.ethnicity }} 
+        </span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Marital Status</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.maritalStatus }} 
+        </span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Home City</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.homeCity }} 
+        </span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Home State/Region</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.homeState }} 
+          <!-- {{ person.homeState }}  -->
+        </span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

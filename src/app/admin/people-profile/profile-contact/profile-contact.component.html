@@ -1,0 +1,64 @@
+
+<mat-card class="flex-details" style="margin: 10px;">
+  <mat-card-header>
+    <h3>Contact</h3>
+    <span class="fill-space"></span>
+    <button mat-button color="primary">Edit</button>  
+  </mat-card-header>
+  <mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-list dense>
+      <mat-list-item> 
+        <mat-divider></mat-divider>                 
+        <span>Phone(s)</span>
+        <div class="fill-space"></div>
+        <span>                    
+          {{ person.contact.mobilePhone1 }}, <br>
+          {{ person.contact.mobilePhone2  }}
+        </span> 
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Home Phone</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.contact.homePhone }}
+        </span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Email</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.contact.email }}
+        </span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>City</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.contact.city }}
+        </span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-divider></mat-divider>
+        <span>Zip</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.contact.zip }}
+        </span>
+      </mat-list-item>
+      <mat-list-item>     
+        <mat-divider></mat-divider>             
+        <span>Address</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.contact.residentialAddress }}
+        </span>
+      </mat-list-item>
+
+
+    </mat-list>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,62 @@
+
+<div class="profile-intro">
+  <div fxLayout="row" fxLayout.xs="column" fxFlexAlign="center center">
+    
+      <!-- <div class="intro-img" > -->
+      <div fxFlex="28" fxFlexOrder.xs="1">
+        <div *ngIf="personImage; else noImageAvatar" class="flex-details" style="margin-bottom: 20px;">
+          <img [src]="personImage" alt="" style="max-width: 100%;">
+        </div>
+      </div>
+
+      <ng-template #noImageAvatar>
+        <div class="flex-details" style="margin-bottom: 20px;">
+          <img src="../../../../assets/avatar/avatar2.png" alt="" style="max-width: 100%;">
+        </div>
+      </ng-template>
+
+      <!-- <div class="flex-details"> -->
+      <div fxFlex="50" fxFlexOrder.xs="2">
+        <div class="flex-details">
+
+          <mat-list>
+
+            <mat-list-item *ngIf="person">
+              <h2>
+                {{ person.title }} 
+                {{ person.surname }} 
+                {{ person.firstname }} 
+                {{ person.otherNames }}  
+              </h2>
+            </mat-list-item>
+  
+            <mat-list-item>
+              <mat-icon>phone_iphone</mat-icon> &nbsp;
+              <span>
+                {{ person.contact.mobilePhone1 }}, &nbsp;
+                {{ person.contact.mobilePhone2  }}
+              </span>
+            </mat-list-item>
+  
+            <mat-list-item *ngIf="person.contact.email">
+              <mat-icon>email</mat-icon> &nbsp;
+              <span>
+                {{ person.contact.email  }}
+              </span>  
+            </mat-list-item>
+  
+            <mat-list-item>
+              <mat-icon>location_on</mat-icon> &nbsp;          
+              <span>
+                {{ person.contact.residentialAddress  }}
+              </span>
+            </mat-list-item>
+  
+          </mat-list> 
+        
+        </div>
+
+      </div>
+  </div>
+
+</div>

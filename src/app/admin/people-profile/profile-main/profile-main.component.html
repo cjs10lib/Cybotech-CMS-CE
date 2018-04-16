@@ -1,0 +1,37 @@
+
+<mat-card class="flex-details" style="margin: 10px;">
+  <mat-card-header>
+    <h3>Main</h3>
+    <span class="fill-space"></span>
+    <button mat-button color="primary">Edit</button>              
+  </mat-card-header>
+  <mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-list dense>
+      <div>
+        <p>
+          Helping us learn more about you, 
+          is a great way to get connected 
+          and play a role in ensuring we 
+          live out our bold, inclusive 
+          and relevant values.
+        </p>
+        <p>
+          Please fill out as much information as required.
+        </p>
+      </div>
+
+      <mat-list-item>
+        <mat-divider></mat-divider>
+          <span>Name</span>
+        <div class="fill-space"></div>
+        <span>
+          {{ person.title }} 
+          {{ person.surname }} 
+          {{ person.firstname }} 
+          {{ person.otherNames }} 
+        </span>
+      </mat-list-item>                               
+    </mat-list>
+  </mat-card-content>
+</mat-card>

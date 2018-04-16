@@ -69,6 +69,13 @@ import { CommonModule } from '@angular/common';
 import { PeopleProfileComponent } from './admin/people-profile/people-profile.component';
 import { BasicRegistrationFormComponent } from './admin/people-form/basic-registration-form/basic-registration-form.component';
 import { ResponsiveLayoutService } from './services/responsive-layout.service';
+import { ProfileMainComponent } from './admin/people-profile/profile-main/profile-main.component';
+import { ProfileFamilyComponent } from './admin/people-profile/profile-family/profile-family.component';
+import { ProfileContactComponent } from './admin/people-profile/profile-contact/profile-contact.component';
+import { ProfileDemographicsComponent } from './admin/people-profile/profile-demographics/profile-demographics.component';
+import { ProfileEducationWorkComponent } from './admin/people-profile/profile-education-work/profile-education-work.component';
+import { ProfileOtherComponent } from './admin/people-profile/profile-other/profile-other.component';
+import { ProfileIntroComponent } from './admin/people-profile/profile-intro/profile-intro.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -88,7 +95,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PeopleFormComponent,
     DropZoneDirective,
     PeopleProfileComponent,
-    BasicRegistrationFormComponent
+    BasicRegistrationFormComponent,
+    ProfileMainComponent,
+    ProfileFamilyComponent,
+    ProfileContactComponent,
+    ProfileDemographicsComponent,
+    ProfileEducationWorkComponent,
+    ProfileOtherComponent,
+    ProfileIntroComponent
   ],
   imports: [
     BrowserModule,
