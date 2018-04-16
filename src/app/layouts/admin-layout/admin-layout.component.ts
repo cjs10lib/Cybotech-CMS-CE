@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSidenavContainer } from '@angular/material';
 
@@ -21,7 +21,7 @@ export class AdminLayoutComponent implements OnInit {
 
     title = 'Cybotech CMS';
 
-    constructor(public ngZone: NgZone, route: ActivatedRoute) {
+    constructor(public ngZone: NgZone) {
 
         this.changeMode();
         window.onresize = (e) => {

@@ -1,4 +1,4 @@
-import { Person } from './../models/person.model';
+import { Person, PersonDetails } from './../models/person.model';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
@@ -11,13 +11,13 @@ export class PeopleService {
   private people: Observable<Person[]>;
 
   // Main upload task
-  task: AngularFireUploadTask;
+  private task: AngularFireUploadTask;
 
   // Progress monitoring
-  percentage: Observable<number>;
-  snapshot: Observable<any>;
+  private percentage: Observable<number>;
+  private snapshot: Observable<any>;
 
-  downloadURL: Observable<string>;
+  private downloadURL: Observable<string>;
 
   constructor(private db: AngularFirestore, private storage: AngularFireStorage) {
     this.peopleCollection = db.collection('people',
@@ -38,6 +38,16 @@ export class PeopleService {
     return this.people;
   }
 
+  getPerson(personId: string) {
+    return this.db.doc(`people/${personId}`).valueChanges();
+  }
+
+  getPersonImage(imagePath: string) {
+    const path = this.storage.ref(imagePath);
+
+    return path.getDownloadURL();
+  }
+
   private addPerson(person: Person, path: string) {
     return this.db.collection('people').add({
       person,
@@ -52,9 +62,9 @@ export class PeopleService {
 
   createPerson(person: Person, fileToUpload: File) {
 
-    if (fileToUpload.type.split('/')[0] !== 'image') {
+    // tslint:disable-next-line:curly
+    if (fileToUpload.type.split('/')[0] !== 'image')
       console.log('unsupported file type :( ');
-    }
 
     const path = this.imagePath(person.firstname);
     const customMetadata = { app: 'Cybotech-CMS CE!' };
@@ -64,11 +74,10 @@ export class PeopleService {
     this.percentage = this.task.percentageChanges();
     this.snapshot = this.task.snapshotChanges();
 
+     // File's download URL
+     this.downloadURL =  this.task.downloadURL();
+
     // Update firestore on completion
-    this.addPerson(person, path);
-
-    // File's download URL
-    this.downloadURL =  this.task.downloadURL();
+    return this.addPerson(person, path);
   }
-
 }

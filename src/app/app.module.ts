@@ -67,6 +67,8 @@ import { PeopleFormComponent } from './admin/people-form/people-form.component';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { CommonModule } from '@angular/common';
 import { PeopleProfileComponent } from './admin/people-profile/people-profile.component';
+import { BasicRegistrationFormComponent } from './admin/people-form/basic-registration-form/basic-registration-form.component';
+import { ResponsiveLayoutService } from './services/responsive-layout.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -85,7 +87,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BreadcrumComponent,
     PeopleFormComponent,
     DropZoneDirective,
-    PeopleProfileComponent
+    PeopleProfileComponent,
+    BasicRegistrationFormComponent
   ],
   imports: [
     BrowserModule,
@@ -135,6 +138,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   providers: [
     PeopleService,
+    ResponsiveLayoutService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

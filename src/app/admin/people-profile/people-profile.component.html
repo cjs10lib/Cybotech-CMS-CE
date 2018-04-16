@@ -7,11 +7,16 @@
      
         <!-- <div class="intro-img" > -->
         <div fxFlex="28" fxFlexOrder.xs="1">
-          <div class="flex-details" style="margin-bottom: 20px;">
-            <img src="../../../assets/avatar/avatar2.png" alt="" style="max-width: 100%;">
+          <div *ngIf="personImage; else noImageAvatar" class="flex-details" style="margin-bottom: 20px;">
+            <img [src]="personImage" alt="" style="max-width: 100%;">
           </div>
         </div>
 
+        <ng-template #noImageAvatar>
+          <div class="flex-details" style="margin-bottom: 20px;">
+            <img src="../../../assets/avatar/avatar2.png" alt="" style="max-width: 100%;">
+          </div>
+        </ng-template>
 
         <!-- <div class="flex-details"> -->
         <div fxFlex="50" fxFlexOrder.xs="2">
@@ -19,23 +24,35 @@
 
             <mat-list>
 
-              <mat-list-item>
-                <h2>Name</h2>
+              <mat-list-item *ngIf="details">
+                <h2>
+                  {{ details.person.title }} 
+                  {{ details.person.surname }} 
+                  {{ details.person.firstname }} 
+                  {{ details.person.otherNames }}  
+                </h2>
               </mat-list-item>
     
               <mat-list-item>
                 <mat-icon>phone_iphone</mat-icon> &nbsp;
-                <span>Phone</span>
+                <span>
+                  {{ details.person.contact.mobilePhone1 }}, &nbsp;
+                  {{ details.person.contact.mobilePhone2  }}
+                </span>
               </mat-list-item>
     
-              <mat-list-item>
+              <mat-list-item *ngIf="details.person.contact.email">
                 <mat-icon>email</mat-icon> &nbsp;
-                <span>Email</span>  
+                <span>
+                  {{ details.person.contact.email  }}
+                </span>  
               </mat-list-item>
     
               <mat-list-item>
                 <mat-icon>location_on</mat-icon> &nbsp;          
-                <span>Address</span>
+                <span>
+                  {{ details.person.contact.residentialAddress  }}
+                </span>
               </mat-list-item>
     
             </mat-list> 
@@ -66,11 +83,30 @@
             <mat-card-content>
               <mat-divider></mat-divider>
               <mat-list dense>
+                <div>
+                  <p>
+                    Helping us learn more about you, 
+                    is a great way to get connected 
+                    and play a role in ensuring we 
+                    live out our bold, inclusive 
+                    and relevant values.
+                  </p>
+                  <p>
+                    Please fill out as much information as required.
+                  </p>
+                </div>
+
                 <mat-list-item>
-                  <span>Name</span>
+                  <mat-divider></mat-divider>
+                    <span>Name</span>
                   <div class="fill-space"></div>
-                  <span>Onwe Christian</span>
-                </mat-list-item>
+                  <span>
+                    {{ details.person.title }} 
+                    {{ details.person.surname }} 
+                    {{ details.person.firstname }} 
+                    {{ details.person.otherNames }} 
+                  </span>
+                </mat-list-item>                               
               </mat-list>
             </mat-card-content>
           </mat-card>
@@ -84,11 +120,7 @@
             <mat-card-content>
               <mat-divider></mat-divider>
               <mat-list dense>
-                <mat-list-item>
-                  <span>Name</span>
-                  <div class="fill-space"></div>
-                  <span>Onwe Christian</span>
-                </mat-list-item>
+                <h2>Comming Soon!</h2>
               </mat-list>
             </mat-card-content>
           </mat-card>
@@ -102,11 +134,57 @@
             <mat-card-content>
               <mat-divider></mat-divider>
               <mat-list dense>
+                <mat-list-item> 
+                  <mat-divider></mat-divider>                 
+                  <span>Phone(s)</span>
+                  <div class="fill-space"></div>
+                  <span>                    
+                    {{ details.person.contact.mobilePhone1 }}, <br>
+                    {{ details.person.contact.mobilePhone2  }}
+                  </span> 
+                </mat-list-item>
                 <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Home Phone</span>
+                  <div class="fill-space"></div>
+                  <span>
+                    {{ details.person.contact.homePhone }}
+                  </span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Email</span>
+                  <div class="fill-space"></div>
+                  <span>
+                    {{ details.person.contact.email }}
+                  </span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>City</span>
+                  <div class="fill-space"></div>
+                  <span>
+                    {{ details.person.contact.city }}
+                  </span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Zip</span>
+                  <div class="fill-space"></div>
+                  <span>
+                    {{ details.person.contact.zip }}
+                  </span>
+                </mat-list-item>
+                <mat-list-item>     
+                  <mat-divider></mat-divider>             
                   <span>Address</span>
                   <div class="fill-space"></div>
-                  <span>Asokoro Abuja</span>
+                  <span>
+                    {{ details.person.contact.residentialAddress }}
+                  </span>
                 </mat-list-item>
+
+
               </mat-list>
             </mat-card-content>
           </mat-card>
@@ -123,11 +201,56 @@
             </mat-card-header>
             <mat-card-content>
               <mat-divider></mat-divider>
-              <mat-list dense>
+              <mat-list dense>               
                 <mat-list-item>
+                  <mat-divider></mat-divider>
                   <span>Gender</span>
                   <div class="fill-space"></div>
-                  <span>Male</span>
+                  <span>
+                    {{ details.person.gender }} 
+                  </span>
+                </mat-list-item>                
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Age</span>
+                  <div class="fill-space"></div>
+                  <span>
+                    {{ getAge() }} Years Old <br>
+                    {{ details.person.dob | date }} 
+                  </span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Ethnicity/Race</span>
+                  <div class="fill-space"></div>
+                  <span>
+                    {{ details.person.ethnicity }} 
+                  </span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Marital Status</span>
+                  <div class="fill-space"></div>
+                  <span>
+                    {{ details.person.maritalStatus }} 
+                  </span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Home City</span>
+                  <div class="fill-space"></div>
+                  <span>
+                    {{ details.person.homeCity }} 
+                  </span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Home State/Region</span>
+                  <div class="fill-space"></div>
+                  <span>
+                    {{ details.person.homeState }} 
+                    <!-- {{ details.person.homeState }}  -->
+                  </span>
                 </mat-list-item>
               </mat-list>
             </mat-card-content>
@@ -143,9 +266,69 @@
               <mat-divider></mat-divider>
               <mat-list dense>
                 <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Highest Education</span>
+                  <div class="fill-space"></div>
+                  <span>{{ details.person.education.highestEducationLevel }}</span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Certificate</span>
+                  <div class="fill-space"></div>
+                  <span>{{ details.person.education.certification }}</span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
                   <span>School</span>
                   <div class="fill-space"></div>
-                  <span>SIMTECH</span>
+                  <span>{{ details.person.education.school }}</span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Grade</span>
+                  <div class="fill-space"></div>
+                  <span>{{ details.person.education.grade }}</span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Occupation</span>
+                  <div class="fill-space"></div>
+                  <span>{{ details.person.occupation.occupation }}</span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Employer</span>
+                  <div class="fill-space"></div>
+                  <span>{{ details.person.occupation.employer }}</span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>DepartMent</span>
+                  <div class="fill-space"></div>
+                  <span>{{ details.person.occupation.department }}</span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Post</span>
+                  <div class="fill-space"></div>
+                  <span>{{ details.person.occupation.post }}</span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Office Phone(s)</span>
+                  <div class="fill-space"></div>
+                  <span>
+                    {{ details.person.occupation.phone }}, <br>
+                    {{ details.person.occupation.telephone }}
+                  </span>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-divider></mat-divider>
+                  <span>Office Address</span>
+                  <div class="fill-space"></div>
+                  <span>
+                    {{ details.person.occupation.address }}
+                  </span>
                 </mat-list-item>
               </mat-list>
             </mat-card-content>
@@ -160,16 +343,7 @@
             <mat-card-content>
               <mat-divider></mat-divider>
               <mat-list dense>
-                <mat-list-item>
-                  <span>Allergies</span>
-                  <div class="fill-space"></div>
-                  <span>None</span>
-                </mat-list-item>
-                <mat-list-item>
-                  <span>Dietary Needs</span>
-                  <div class="fill-space"></div>
-                  <span>None</span>
-                </mat-list-item>
+                <h2>Comming Soon!</h2>
               </mat-list>
             </mat-card-content>
           </mat-card>
