@@ -17,8 +17,7 @@ export class BasicRegistrationFormComponent implements OnInit {
     contact: {}
   };
 
-   // image preview
-   imageUrl = '../../assets/avatar/avatar3.png';
+  imageUrl = '../../assets/avatar/avatar3.png';
    fileToUpload: File = null;
    // tslint:disable-next-line:no-inferrable-types
    isHovering: boolean;
@@ -56,9 +55,8 @@ export class BasicRegistrationFormComponent implements OnInit {
         .then(resp => {
           personId = resp.id;
 
+          console.log(resp.id);
 
-          console.log(personId);
-          // route to profile
           // tslint:disable-next-line:curly
           if (personId)
             this.router.navigate(['profile', personId]);

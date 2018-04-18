@@ -5,6 +5,7 @@ import { PeopleService } from './../../services/people.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/switchMap';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-people-profile',
@@ -16,7 +17,7 @@ export class PeopleProfileComponent implements OnInit {
   icon = 'person';
   pageBanner = 'url(\'../../assets/banner/banner 1.jpg\')';
 
-  personImage;
+  // personImage;
 
   details: PersonDetails = {
     person: {
@@ -26,7 +27,7 @@ export class PeopleProfileComponent implements OnInit {
     }
   };
 
-  constructor(private peopleService: PeopleService, private route: ActivatedRoute) { }
+  constructor(private peopleService: PeopleService, private route: ActivatedRoute, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -36,16 +37,10 @@ export class PeopleProfileComponent implements OnInit {
       return;
 
     this.peopleService.getPerson(id)
-      .take(1).switchMap(resp => {
-        this.details.person = resp['person'];
-
-
-        console.log(resp);
-
-        return this.peopleService.getPersonImage(resp['imageUrl']);
-      })
       .take(1).subscribe(resp => {
-          this.personImage = resp;
-        });
+        this.details = resp;
+
+       // this.personImage = this.sanitizer.bypassSecurityTrustUrl(this.details.imageURL);
+      });
   }
 }

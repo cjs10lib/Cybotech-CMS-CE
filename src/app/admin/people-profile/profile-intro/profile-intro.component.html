@@ -5,7 +5,7 @@
       <!-- <div class="intro-img" > -->
       <div fxFlex="28" fxFlexOrder.xs="1">
         <div *ngIf="personImage; else noImageAvatar" class="flex-details" style="margin-bottom: 20px;">
-          <img [src]="personImage" alt="" style="max-width: 100%;">
+          <img [src]="personImage" alt="" style="width: 100%;">
         </div>
       </div>
 
@@ -23,7 +23,6 @@
 
             <mat-list-item *ngIf="person">
               <h2>
-                {{ person.title }} 
                 {{ person.surname }} 
                 {{ person.firstname }} 
                 {{ person.otherNames }}  

@@ -1,12 +1,13 @@
 
 export interface PersonDetails {
+    id?: string;
     person?: Person;
     createdDate?: Date;
     imageURL?: string;
+    imagePath?: string;
 }
 
 export interface Person {
-    id?: string;
     imageURL?: string;
     title?: string;
     surname?: string;

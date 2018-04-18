@@ -83,8 +83,8 @@
         <mat-form-field>
           <mat-select [(ngModel)]="person.gender" name="gender" #gender placeholder="Gender" required>
             <mat-option value=""></mat-option>
-            <mat-option value="male">Male</mat-option>
-            <mat-option value="female">Female</mat-option>
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
           </mat-select>
           <mat-error>
             Gender is <strong>required</strong>
@@ -96,7 +96,7 @@
           <input matInput [matDatepicker]="DOB" [(ngModel)]="person.dob" name="dob" #dob placeholder="Date Of Birth" required>
           <mat-datepicker-toggle matSuffix [for]="DOB"></mat-datepicker-toggle>
           <mat-datepicker #DOB touchUi="true"></mat-datepicker>
-          <mat-hint align="start">Birth date format: mm/dd/yyyy</mat-hint>
+          <mat-hint>Birth date format: mm/dd/yyyy</mat-hint>
           <mat-hint align="end">Click toggle button to select date!</mat-hint>
 
           <mat-error>
@@ -105,15 +105,15 @@
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput [(ngModel)]="person.ethniciy" name="ethniciy" #ethnicity placeholder="Ethnicity/Race">
+            <input matInput [(ngModel)]="person.ethnicity" name="ethnicity" #ethnicity placeholder="Ethnicity/Race">
             <mat-hint>Eg. White/Caucasian, British</mat-hint>
         </mat-form-field>
 
         <mat-form-field>
           <mat-select [(ngModel)]="person.maritalStatus" name="maritalStatus" #maritalStatus placeholder="Marital Status" required>
             <mat-option value=""></mat-option>
-            <mat-option value="single">single</mat-option>
-            <mat-option value="married">Married</mat-option>
+            <mat-option value="Single">Single</mat-option>
+            <mat-option value="Married">Married</mat-option>
           </mat-select>
 
           <mat-error>
@@ -217,8 +217,8 @@
         <mat-form-field>
           <mat-select [(ngModel)]="person.occupation.officePost" name="officePost" #officePost placeholder="Official Position">
             <mat-option value=""></mat-option>
-            <mat-option value="ceo">CEO</mat-option>
-            <mat-option value="manager">Manager</mat-option>
+            <mat-option value="Ceo">CEO</mat-option>
+            <mat-option value="Manager">Manager</mat-option>
           </mat-select>
         </mat-form-field>   
 
