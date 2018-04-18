@@ -17,8 +17,6 @@ export class PeopleProfileComponent implements OnInit {
   icon = 'person';
   pageBanner = 'url(\'../../assets/banner/banner 1.jpg\')';
 
-  // personImage;
-
   details: PersonDetails = {
     person: {
       education: {},
@@ -39,7 +37,6 @@ export class PeopleProfileComponent implements OnInit {
     this.peopleService.getPerson(id)
       .take(1).subscribe(resp => {
         this.details = resp;
-
        // this.personImage = this.sanitizer.bypassSecurityTrustUrl(this.details.imageURL);
       });
   }

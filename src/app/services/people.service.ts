@@ -5,12 +5,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
 import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
 import * as firebase from 'firebase';
+import { isUndefined } from 'util';
 
 @Injectable()
 export class PeopleService {
   private peopleCollection: AngularFirestoreCollection<PersonDetails>;
   private personDocument: AngularFirestoreDocument<PersonDetails>;
-  private people; // : Observable<PersonDetails[]>;
+  private people: Observable<PersonDetails[]>;
 
   // Main upload task
   private task: AngularFireUploadTask;
@@ -21,11 +22,8 @@ export class PeopleService {
 
   private downloadURL: string;
 
-  storageRef;
-
   constructor(private db: AngularFirestore, private storage: AngularFireStorage) {
-    // this.peopleCollection = db.collection('people',
-    //   ref => ref.orderBy('name'));
+    // this.peopleCollection = db.collection('people', ref => ref.orderBy('name'));
     this.peopleCollection = db.collection('people');
 
     this.people = this.peopleCollection.snapshotChanges()
@@ -39,6 +37,19 @@ export class PeopleService {
       });
   }
 
+  private imagePath(firstname: string) {
+    return `Images/${new Date().getTime()}_${firstname}`;
+  }
+
+  private addPerson(person: Person, path?: string, downloadUrl?: string) {
+    return this.db.collection('people').add({
+      person: person,
+      imageURL: downloadUrl ? this.downloadURL : '',
+      imagePath: path ? path : '',
+      createdDate: new Date().getTime()
+    });
+  }
+
   getPeople() {
     return this.people;
   }
@@ -47,29 +58,15 @@ export class PeopleService {
     return this.db.doc(`people/${personId}`).valueChanges();
   }
 
-  // getPersonImage(imageURL: string) {
-  //   const storageRef = firebase.storage().ref();
-  //   return storageRef.child(imageURL);
-  // }
+  async createPerson(person: Person, fileToUpload?: File) {
 
-  private addPerson(person: Person, path: string, downloadUrl: string) {
-    return this.db.collection('people').add({
-      person: person,
-      imageURL: downloadUrl,
-      imagePath: path,
-      createdDate: new Date().getTime()
-    });
-  }
-
-  private imagePath(firstname: string) {
-    return `Images/${new Date().getTime()}_${firstname}`;
-  }
-
-  async createPerson(person: Person, fileToUpload: File) {
+    // tslint:disable-next-line:curly
+    if (fileToUpload == null)
+      return this.addPerson(person);
 
     // tslint:disable-next-line:curly
     if (fileToUpload.type.split('/')[0] !== 'image')
-      console.log('unsupported file type :( ');
+    console.log('unsupported file type :( ');
 
     const path = this.imagePath(person.firstname);
     const customMetadata = { app: 'Cybotech-CMS CE!' };
@@ -81,6 +78,7 @@ export class PeopleService {
 
     // File's download URL
     const url = await this.task.downloadURL().toPromise();
+    this.downloadURL = url;
 
     return this.addPerson(person, path, url);
   }
