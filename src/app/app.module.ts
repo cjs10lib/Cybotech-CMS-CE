@@ -1,3 +1,4 @@
+import { RegistrationImageService } from './services/registration-image.service';
 
 import { PeopleService } from './services/people.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -77,6 +78,7 @@ import { ProfileDemographicsComponent } from './admin/people-profile/profile-dem
 import { ProfileEducationWorkComponent } from './admin/people-profile/profile-education-work/profile-education-work.component';
 import { ProfileOtherComponent } from './admin/people-profile/profile-other/profile-other.component';
 import { ProfileIntroComponent } from './admin/people-profile/profile-intro/profile-intro.component';
+import { SweetAlertService } from './services/sweet-alert.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -153,6 +155,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   providers: [
     PeopleService,
+    RegistrationImageService,
+    SweetAlertService,
     ResponsiveLayoutService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

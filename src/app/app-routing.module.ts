@@ -37,7 +37,11 @@ const routes: Routes = [
         component: PeopleComponent
       },
       {
-        path: 'new-registration',
+        path: 'registration/:id',
+        component: PeopleFormComponent
+      },
+      {
+        path: 'registration',
         component: PeopleFormComponent
       },
     ]

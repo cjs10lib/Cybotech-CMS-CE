@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { Person } from '../../../models/person.model';
 import { PeopleService } from '../../../services/people.service';
-import { Router } from '@angular/router';
+import { PersonDetails } from './../../../models/person.model';
+import { SweetAlertService } from '../../../services/sweet-alert.service';
 
 @Component({
   selector: 'app-basic-registration-form',
@@ -17,14 +20,39 @@ export class BasicRegistrationFormComponent implements OnInit {
     contact: {}
   };
 
-  imageUrl = '../../assets/avatar/avatar3.png';
-   fileToUpload: File = null;
-   // tslint:disable-next-line:no-inferrable-types
-   isHovering: boolean;
+  details: PersonDetails = {
+    person: {
+      education: {},
+      occupation: {},
+      contact: {}
+    }
+  };
 
-  constructor(public peopleService: PeopleService, private router: Router) { }
+  personId: string;
+
+  imageUrl = '../../assets/avatar/avatar3.png';
+  fileToUpload: File = null;
+  isHovering: boolean;
+
+  constructor(
+    private peopleService: PeopleService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private alertService: SweetAlertService
+  ) { }
 
   ngOnInit() {
+    this.personId = this.route.snapshot.paramMap.get('id');
+
+    if (this.personId) {
+      this.peopleService.getPerson(this.personId)
+        .take(1).subscribe(resp => {
+          this.person = resp['person'];
+          this.details = resp;
+
+          this.imageUrl = resp['imageURL'];
+        });
+    }
   }
 
   toggleHover($event: boolean) {
@@ -46,22 +74,39 @@ export class BasicRegistrationFormComponent implements OnInit {
     reader.readAsDataURL(this.fileToUpload);
   }
 
-  onSubmit(person: Person) {
+  async onSubmit(person: Person) {
+    this.alertService.confirmUpdate()
+    .then(result => {
+      // tslint:disable-next-line:curly
+      if (!result.value)
+        return;
 
-    let personId;
+      if (this.personId) {
+        this.confirmUpdate();
+      } else {
+        this.confirmCreate();
+      }
+      this.alertService.afterUpdateSucess();
+    });
+  }
 
-    if (confirm('Are you sure of this record?')) {
-      this.peopleService.createPerson(this.person, this.fileToUpload)
-        .then(resp => {
-          personId = resp.id;
+  private confirmCreate() {
+    this.peopleService.createPerson(this.person, this.fileToUpload)
+      .then(resp => {
+        const personId = resp.id;
 
-          console.log(resp.id);
+        // tslint:disable-next-line:curly
+        if (personId)
+          return this.router.navigate(['profile', personId]);
 
-          // tslint:disable-next-line:curly
-          if (personId)
-            this.router.navigate(['profile', personId]);
-        });
-    }
+        // navigate to people
+        this.router.navigate(['people']);
+      });
+  }
+
+  private async confirmUpdate() {
+    await this.peopleService.updatePerson(this.personId, this.details, this.fileToUpload);
+    this.router.navigate(['profile', this.personId]);
   }
 
   setStep(index: number) {

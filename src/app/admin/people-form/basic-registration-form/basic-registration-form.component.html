@@ -7,6 +7,10 @@
 
 <form #f="ngForm" (ngSubmit)="onSubmit(f.value)"> 
 
+  <div class="submit-button">
+    <button mat-raised-button color="primary" (click)="nextStep()" [disabled]="!f.valid"> <mat-icon>save</mat-icon> Save Record</button>    
+  </div>
+
   <mat-accordion class="example-headers-align">
 
     <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
@@ -15,7 +19,7 @@
           Image Upload
         </mat-panel-title>
         <mat-panel-description>
-          Upload image
+          Upload Image
           <mat-icon>cloud_upload</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
@@ -50,7 +54,7 @@
           Bio Info
         </mat-panel-title>
         <mat-panel-description>
-          Enter primary details
+          Primary Details
           <mat-icon>account_circle</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
@@ -142,7 +146,7 @@
           Education
         </mat-panel-title>
         <mat-panel-description>
-          Enter qualifications
+          Qualifications
           <mat-icon>school</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
@@ -189,7 +193,7 @@
           Profession/Work
         </mat-panel-title>
         <mat-panel-description>
-          Enter profession and qualification
+          Profession
           <mat-icon>school</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
@@ -251,7 +255,7 @@
           Contact
         </mat-panel-title>
         <mat-panel-description>
-          Enter contact details
+          Contact Details
           <mat-icon>perm_contact_calendar</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
@@ -315,8 +319,7 @@
   
       <mat-action-row>
         <button mat-raised-button type="button" (click)="prevStep()">Previous</button>
-        <!-- <button mat-raised-button color="primary" (click)="nextStep()" [disabled]="!f.valid"> <mat-icon>save</mat-icon> Save Record</button> -->
-        <button mat-raised-button color="primary" (click)="nextStep()"> <mat-icon>save</mat-icon> Save Record</button>
+        <button mat-raised-button type="button" color="primary" (click)="nextStep()">Finish</button>
       </mat-action-row>
     </mat-expansion-panel>
   

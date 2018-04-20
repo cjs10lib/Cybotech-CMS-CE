@@ -18,15 +18,15 @@
 
         <section>
           <div class="add-new">
-            <a mat-raised-button color="primary" routerLink="/new-registration">Add New Record</a>
+            <a mat-raised-button color="primary" routerLink="/registration">Add New Record</a>
           </div>
         </section>
 
         <div>
           <mat-nav-list dense>
-            <mat-list-item *ngFor="let detail of details">
+            <mat-list-item *ngFor="let detail of details$ | async" routerLink="/profile/{{ detail.id }}">
               <mat-divider></mat-divider>
-              <img *ngIf="detail.imageURL; else noImageAvatar" matListAvatar [src]="detail.imageURL" alt="detail.firstname">
+              <img *ngIf="detail.imageURL; else noImageAvatar" matListAvatar [src]="detail.imageURL" [alt]="detail.person.firstname">
               <h3 matLine> 
                 <strong>                  
                   {{ detail.person.title }}

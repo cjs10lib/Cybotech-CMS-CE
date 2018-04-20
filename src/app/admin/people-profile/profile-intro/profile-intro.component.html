@@ -4,8 +4,9 @@
     
       <!-- <div class="intro-img" > -->
       <div fxFlex="28" fxFlexOrder.xs="1">
-        <div *ngIf="personImage; else noImageAvatar" class="flex-details" style="margin-bottom: 20px;">
-          <img [src]="personImage" alt="" style="width: 100%;">
+        <div *ngIf="details.imageURL; else noImageAvatar" class="flex-details" style="margin-bottom: 20px;">
+          <!-- <img [src]="personImage" alt="" style="width: 100%;"> -->
+          <img [src]="details.imageURL" [alt]="details.person.firstname" style="width: 100%;">
         </div>
       </div>
 
@@ -21,35 +22,41 @@
 
           <mat-list>
 
-            <mat-list-item *ngIf="person">
+            <mat-list-item>
               <h2>
-                {{ person.surname }} 
-                {{ person.firstname }} 
-                {{ person.otherNames }}  
-              </h2>
+                {{ details.person.surname }} 
+                {{ details.person.firstname }} 
+              </h2> &nbsp;
+              <small>({{ details.person.otherNames }}) </small> 
             </mat-list-item>
   
             <mat-list-item>
               <mat-icon>phone_iphone</mat-icon> &nbsp;
               <span>
-                {{ person.contact.mobilePhone1 }}, &nbsp;
-                {{ person.contact.mobilePhone2  }}
+                {{ details.person.contact.mobilePhone1 }}, &nbsp;
+                {{ details.person.contact.mobilePhone2  }}
               </span>
             </mat-list-item>
   
-            <mat-list-item *ngIf="person.contact.email">
+            <mat-list-item *ngIf="details.person.contact.email">
               <mat-icon>email</mat-icon> &nbsp;
               <span>
-                {{ person.contact.email  }}
+                {{ details.person.contact.email  }}
               </span>  
             </mat-list-item>
   
             <mat-list-item>
               <mat-icon>location_on</mat-icon> &nbsp;          
               <span>
-                {{ person.contact.residentialAddress  }}
+                {{ details.person.contact.residentialAddress  }}
               </span>
+              <mat-divider></mat-divider>
             </mat-list-item>
+
+            
+            <div class="edit-button">
+              <button mat-button color="primary" (click)="editProfile()">Edit Profile</button>
+            </div>
   
           </mat-list> 
         

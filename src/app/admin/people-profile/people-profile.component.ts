@@ -25,7 +25,7 @@ export class PeopleProfileComponent implements OnInit {
     }
   };
 
-  constructor(private peopleService: PeopleService, private route: ActivatedRoute, private sanitizer: DomSanitizer) { }
+  constructor(private peopleService: PeopleService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');

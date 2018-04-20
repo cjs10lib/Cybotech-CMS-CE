@@ -1,11 +1,11 @@
-import { Person, PersonDetails } from './../models/person.model';
+import 'rxjs/add/observable/fromPromise';
+
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromPromise';
-import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
-import * as firebase from 'firebase';
-import { isUndefined } from 'util';
+
+import { Person, PersonDetails } from './../models/person.model';
+import { RegistrationImageService } from './registration-image.service';
 
 @Injectable()
 export class PeopleService {
@@ -13,17 +13,7 @@ export class PeopleService {
   private personDocument: AngularFirestoreDocument<PersonDetails>;
   private people: Observable<PersonDetails[]>;
 
-  // Main upload task
-  private task: AngularFireUploadTask;
-
-  // Progress monitoring
-  private percentage: Observable<number>;
-  private snapshot: Observable<any>;
-
-  private downloadURL: string;
-
-  constructor(private db: AngularFirestore, private storage: AngularFireStorage) {
-    // this.peopleCollection = db.collection('people', ref => ref.orderBy('name'));
+  constructor(private db: AngularFirestore, private imageService: RegistrationImageService) {
     this.peopleCollection = db.collection('people');
 
     this.people = this.peopleCollection.snapshotChanges()
@@ -37,14 +27,10 @@ export class PeopleService {
       });
   }
 
-  private imagePath(firstname: string) {
-    return `Images/${new Date().getTime()}_${firstname}`;
-  }
-
   private addPerson(person: Person, path?: string, downloadUrl?: string) {
     return this.db.collection('people').add({
       person: person,
-      imageURL: downloadUrl ? this.downloadURL : '',
+      imageURL: downloadUrl ? downloadUrl : '',
       imagePath: path ? path : '',
       createdDate: new Date().getTime()
     });
@@ -59,27 +45,25 @@ export class PeopleService {
   }
 
   async createPerson(person: Person, fileToUpload?: File) {
-
-    // tslint:disable-next-line:curly
-    if (fileToUpload == null)
+    if (fileToUpload == null) {
       return this.addPerson(person);
+    } else {
+      const imageUpload = await this.imageService.pushImageUpload(person, fileToUpload);
+      return this.addPerson(person, imageUpload.path, imageUpload.downloadURL);
+    }
+  }
 
-    // tslint:disable-next-line:curly
-    if (fileToUpload.type.split('/')[0] !== 'image')
-    console.log('unsupported file type :( ');
-
-    const path = this.imagePath(person.firstname);
-    const customMetadata = { app: 'Cybotech-CMS CE!' };
-    this.task = this.storage.upload(path, fileToUpload, { customMetadata });
-
-    // Progress monitoring
-    this.percentage = this.task.percentageChanges();
-    this.snapshot = this.task.snapshotChanges();
-
-    // File's download URL
-    const url = await this.task.downloadURL().toPromise();
-    this.downloadURL = url;
-
-    return this.addPerson(person, path, url);
+  async updatePerson (personId: string, details: PersonDetails, fileToUpload?: File) {
+    if (fileToUpload == null) {
+      return this.db.doc(`people/${personId}`).set(details, {merge: true});
+    } else {
+      const imageUpload = await this.imageService.pushImageUpload(details.person, fileToUpload);
+      return this.db.doc(`people/${personId}`)
+        .set({
+          imageURL: imageUpload.downloadURL,
+          imagePath: imageUpload.path,
+          person: details.person
+        }, {merge: true});
+    }
   }
 }

@@ -10,25 +10,17 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './people.component.html',
   styleUrls: ['./people.component.scss']
 })
-export class PeopleComponent implements OnInit, OnDestroy {
+export class PeopleComponent implements OnInit {
   title = 'People';
   icon = 'people';
   pageBanner = 'url(\'../../assets/banner/banner 1.jpg\')';
 
-  details: PersonDetails[] = [];
+  // details: PersonDetails[] = [];
+  details$: Observable<PersonDetails[]>;
 
-  subcription: Subscription;
-
-  constructor(private peopleService: PeopleService, private sanitizer: DomSanitizer) { }
+  constructor(private peopleService: PeopleService) { }
 
   ngOnInit() {
-    this.subcription = this.peopleService.getPeople()
-      .subscribe(resp => {
-        this.details = resp;
-      });
-  }
-
-  ngOnDestroy() {
-    this.subcription.unsubscribe();
+    this.details$ = this.peopleService.getPeople();
   }
 }
