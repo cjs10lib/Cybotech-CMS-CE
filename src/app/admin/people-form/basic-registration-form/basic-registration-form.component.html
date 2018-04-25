@@ -71,7 +71,7 @@
           <mat-error>
             Surname is <strong>required</strong>
           </mat-error>
-        </mat-form-field>
+        </mat-form-field>       
 
         <mat-form-field>
           <input matInput [(ngModel)]="person.firstname" name="firstname" #firstname placeholder="First name" required>
@@ -100,7 +100,7 @@
           <input matInput [matDatepicker]="DOB" [(ngModel)]="person.dob" name="dob" #dob placeholder="Date Of Birth" required>
           <mat-datepicker-toggle matSuffix [for]="DOB"></mat-datepicker-toggle>
           <mat-datepicker #DOB touchUi="true"></mat-datepicker>
-          <mat-hint>Birth date format: mm/dd/yyyy</mat-hint>
+          <mat-hint>Birth Date Format: mm/dd/yyyy</mat-hint>
           <mat-hint align="end">Click toggle button to select date!</mat-hint>
 
           <mat-error>

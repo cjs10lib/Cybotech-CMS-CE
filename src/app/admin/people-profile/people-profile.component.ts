@@ -1,11 +1,12 @@
 import { ResponsiveLayoutService } from './../../services/responsive-layout.service';
 import { ActivatedRoute } from '@angular/router';
-import { Person, PersonDetails } from './../../models/person.model';
+import { Person } from './../../models/person.model';
 import { PeopleService } from './../../services/people.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/switchMap';
 import { DomSanitizer } from '@angular/platform-browser';
+import { PersonDetails } from '../../models/person-details.model';
 
 @Component({
   selector: 'app-people-profile',

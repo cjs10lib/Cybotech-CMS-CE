@@ -8,7 +8,13 @@
         <div class="flex-details">
           <h3>Filter by Name</h3>
           <mat-form-field fxFlex.sm="style='font-size:10px;'">
-            <input matInput type="text" placeholder="Person's name">
+            <span matPrefix>
+              <mat-icon>search</mat-icon> &nbsp;
+            </span>
+            <input matInput #query (keyup)="search(query.value)" [(ngModel)]="searchQuery" name="searchQry"placeholder="Search People...">
+            <button mat-button *ngIf="searchQuery" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearchField()">
+              <mat-icon>close</mat-icon>
+            </button>
           </mat-form-field>
         </div>
       </div>
@@ -24,7 +30,7 @@
 
         <div>
           <mat-nav-list dense>
-            <mat-list-item *ngFor="let detail of details$ | async" routerLink="/profile/{{ detail.id }}">
+            <mat-list-item *ngFor="let detail of filteredDetails" routerLink="/profile/{{ detail.id }}">
               <mat-divider></mat-divider>
               <img *ngIf="detail.imageURL; else noImageAvatar" matListAvatar [src]="detail.imageURL" [alt]="detail.person.firstname">
               <h3 matLine> 

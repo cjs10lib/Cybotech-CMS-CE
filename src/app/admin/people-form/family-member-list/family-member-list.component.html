@@ -1,0 +1,37 @@
+<div class="flex-container">
+
+  <mat-card style="max-height:330px;">
+    <mat-card-header>
+      <mat-icon style="font-size: 40px;padding:10px 20px 0 0;">people</mat-icon>
+      <h4>Family Members</h4> 
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <!-- <mat-nav-list dense class="family-list">                   -->
+    <mat-nav-list dense *ngIf="members$; else noRecordFound" class="members-list">                  
+      <mat-list-item *ngFor="let member of members$" routerLink="/profile/{{ member.id }}">
+        <mat-divider></mat-divider>
+        <img matListAvatar [src]="member.imageURL" [alt]="member.person.firstname">
+        <h3 matLine> 
+          <strong>
+           {{ member.person.fullname }} 
+          </strong>
+        </h3>
+        <p matLine>
+          <span> Gender: {{ member.person.gender }} </span>
+        </p>
+        <button mat-icon-button>
+          <mat-icon matTooltip="Remove from family-list" color="warn">delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+
+  </mat-card>    
+</div> 
+
+<ng-template #noRecordFound>
+  <p>
+    Sorry no member yet :(
+  </p>
+</ng-template>

@@ -1,0 +1,14 @@
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.members-list {
+    max-height: 270px;
+    overflow: auto;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}

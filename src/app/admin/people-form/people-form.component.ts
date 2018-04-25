@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,9 +13,12 @@ export class PeopleFormComponent implements OnInit {
   icon = 'person_add';
   pageBanner = 'url(\'../../assets/banner/banner 1.jpg\')';
 
-  constructor() { }
+  personId: string;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.personId = this.route.snapshot.paramMap.get('id');
   }
 
 }

@@ -1,9 +1,13 @@
+import { PersonDietaryNeedsService } from './services/person-dietary-needs.service';
+import { PersonAllegyService } from './services/person-allegy.service';
+import { PersonFamilyService } from './services/person-family.service';
+import { PersonBaptism } from './models/person-baptism.model';
 import { RegistrationImageService } from './services/registration-image.service';
 
 import { PeopleService } from './services/people.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -79,6 +83,16 @@ import { ProfileEducationWorkComponent } from './admin/people-profile/profile-ed
 import { ProfileOtherComponent } from './admin/people-profile/profile-other/profile-other.component';
 import { ProfileIntroComponent } from './admin/people-profile/profile-intro/profile-intro.component';
 import { SweetAlertService } from './services/sweet-alert.service';
+import { ExtendedRegistrationFormComponent } from './admin/people-form/extended-registration-form/extended-registration-form.component';
+import { BaptismalFormComponent } from './admin/people-form/extended-registration-form/baptismal-form/baptismal-form.component';
+import { PersonBaptismService } from './services/person-baptism.service';
+import { FamilyFormComponent } from './admin/people-form/extended-registration-form/family-form/family-form.component';
+import { PeopleSearchComponent } from './admin/people-search/people-search.component';
+import { FamilyMemberListComponent } from './admin/people-form/family-member-list/family-member-list.component';
+import { AddFamilyFormComponent } from './admin/people-form/extended-registration-form/add-family-form/add-family-form.component';
+import { OtherFormComponent } from './admin/people-form/extended-registration-form/other-form/other-form.component';
+import { AllegyFormComponent } from './admin/people-form/extended-registration-form/allegy-form/allegy-form.component';
+import { DietaryNeedFormComponent } from './admin/people-form/extended-registration-form/dietary-need-form/dietary-need-form.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -105,7 +119,19 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProfileDemographicsComponent,
     ProfileEducationWorkComponent,
     ProfileOtherComponent,
-    ProfileIntroComponent
+    ProfileIntroComponent,
+    ExtendedRegistrationFormComponent,
+    BaptismalFormComponent,
+    FamilyFormComponent,
+    PeopleSearchComponent,
+    FamilyMemberListComponent,
+    AddFamilyFormComponent,
+    OtherFormComponent,
+    AllegyFormComponent,
+    DietaryNeedFormComponent
+  ],
+  entryComponents: [
+    AddFamilyFormComponent
   ],
   imports: [
     BrowserModule,
@@ -113,6 +139,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CommonModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     PerfectScrollbarModule,
     FlexLayoutModule,
 
@@ -156,6 +183,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   providers: [
     PeopleService,
     RegistrationImageService,
+    PersonBaptismService,
+    PersonFamilyService,
+    PersonAllegyService,
+    PersonDietaryNeedsService,
     SweetAlertService,
     ResponsiveLayoutService,
     {

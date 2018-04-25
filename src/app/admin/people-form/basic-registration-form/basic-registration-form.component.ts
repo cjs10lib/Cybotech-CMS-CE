@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { PersonDetails } from '../../../models/person-details.model';
 import { Person } from '../../../models/person.model';
 import { PeopleService } from '../../../services/people.service';
-import { PersonDetails } from './../../../models/person.model';
 import { SweetAlertService } from '../../../services/sweet-alert.service';
 
 @Component({
@@ -12,7 +12,12 @@ import { SweetAlertService } from '../../../services/sweet-alert.service';
   styleUrls: ['./basic-registration-form.component.scss']
 })
 export class BasicRegistrationFormComponent implements OnInit {
+  // tslint:disable-next-line:no-input-rename
+  @Input('person-id') personId;
+
   step = 0;
+
+  fullname;
 
   person: Person = {
     education: {},
@@ -28,8 +33,6 @@ export class BasicRegistrationFormComponent implements OnInit {
     }
   };
 
-  personId: string;
-
   imageUrl = '../../assets/avatar/avatar3.png';
   fileToUpload: File = null;
   isHovering: boolean;
@@ -39,11 +42,9 @@ export class BasicRegistrationFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private alertService: SweetAlertService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.personId = this.route.snapshot.paramMap.get('id');
-
     if (this.personId) {
       this.peopleService.getPerson(this.personId)
         .take(1).subscribe(resp => {
@@ -81,6 +82,8 @@ export class BasicRegistrationFormComponent implements OnInit {
       if (!result.value)
         return;
 
+      // adds fullname
+      this.person.fullname = this.person.surname + ' ' + this.person.firstname + ' ' + this.person.otherNames;
       if (this.personId) {
         this.confirmUpdate();
       } else {
@@ -94,6 +97,8 @@ export class BasicRegistrationFormComponent implements OnInit {
     this.peopleService.createPerson(this.person, this.fileToUpload)
       .then(resp => {
         const personId = resp.id;
+
+        console.log(this.person.firstname);
 
         // tslint:disable-next-line:curly
         if (personId)

@@ -4,8 +4,10 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
-import { Person, PersonDetails } from './../models/person.model';
+import { PersonDetails } from '../models/person-details.model';
+import { Person } from './../models/person.model';
 import { RegistrationImageService } from './registration-image.service';
+import { PersonFamily } from '../models/person-family.model';
 
 @Injectable()
 export class PeopleService {
@@ -65,5 +67,12 @@ export class PeopleService {
           person: details.person
         }, {merge: true});
     }
+  }
+
+  updatePersonFamily(personId: string, details: PersonFamily) {
+    return this.db.doc(`people/${personId}`)
+      .set({
+        family: details
+    }, {merge: true});
   }
 }

@@ -1,0 +1,41 @@
+<div class="flex-container">
+
+  <p>Enter member name!</p>
+
+  <mat-form-field>
+    <span matPrefix>
+      <mat-icon>search</mat-icon> &nbsp;
+    </span>
+    <input matInput #query (keyup)="search(query.value)" [(ngModel)]="searchQuery" name="searchQry" placeholder="Search People..." [disabled]="!showAddFamilyMembers">
+    <button mat-button *ngIf="searchQuery" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearchField()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>                
+  
+  <mat-nav-list dense style="margin-top:-20px;" class="search-list">                  
+    <mat-list-item *ngFor="let details of filteredDetails">
+      <mat-divider></mat-divider>
+      <img matListAvatar [src]="details.imageURL" alt="...">
+      <h3 matLine> 
+        <strong>
+          {{ details.person.title }}
+          {{ details.person.fullname }} 
+        </strong>
+      </h3>
+      <p matLine>
+        <span> Gender: {{ details.person.gender  }} </span>
+      </p>
+      <!-- <button mat-icon-button type="button" (click)="addToFamily($event, details.id)">
+        <mat-icon matTooltip="Add to family-list" color="primary">person_add</mat-icon>
+      </button> -->
+    </mat-list-item>
+  </mat-nav-list>
+  
+  <div *ngIf="filteredDetails?.length < 1">
+    <p>
+      No results found :(
+    </p>
+  </div>
+
+</div>
+  

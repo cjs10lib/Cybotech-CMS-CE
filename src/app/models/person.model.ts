@@ -1,18 +1,11 @@
 
-export interface PersonDetails {
-    id?: string;
-    person?: Person;
-    createdDate?: Date;
-    imageURL?: string;
-    imagePath?: string;
-}
-
-export interface Person {
+export class Person {
     imageURL?: string;
     title?: string;
     surname?: string;
     firstname?: string;
-    othernames?: string;
+    otherNames?: string;
+    fullname?: string;
     gender?: string;
     dob?: Date;
     maritalStatus?: string;
@@ -56,3 +49,4 @@ interface Education {
     school?: string;
     grade?: string;
 }
+
